@@ -10,7 +10,7 @@ SenateKey = "CONGRESS_API_KEY"
 
 url = f"https://api.congress.gov/v3/bill/117/hr/3076/actions?api_key=[SenateKey]"
 
-update = f"Update to [bill title/number]: The Senate [passed/failed] a vote on [rule/passage]. To view vote count and text: [url]"
+update = f"Update to {first_result['billNumber']}: The Senate [passed/failed] a vote on [passage/rule]. To view vote count and text: [url]"
 
 msg = update
 
