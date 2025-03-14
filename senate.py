@@ -4,6 +4,7 @@ import requests
 from slack import WebClient
 from slack.errors import SlackApiError
 
+Slack_API=
 
 SenateKey = "CONGRESS_API_KEY"
 
@@ -12,6 +13,7 @@ url = f"https://api.congress.gov/v3/bill/117/hr/3076/actions?api_key=[SenateKey]
 update = f"Update to [bill title/number]: The Senate [passed/failed] a vote on [rule/passage]. To view vote count and text: [url]"
 
 msg = update
+
 try:
     response = client.chat_postMessage(
         channel="slack-bots",
