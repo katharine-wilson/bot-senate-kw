@@ -25,8 +25,8 @@ for vote in votes:
     nays = vote.find('nays').text
     number = vote.find('vote_number').text
 
-    if number > '00134': most_recent
+    if number > '00134': most_recent.append (soup)
 
-update = f"New Senate vote {most_recent.append['date']}: {most_recent.append['question']} for {most_recent.append['issue']}. The yeas were {most_recent.append['yeas']} and the nays were {most_recent.append['nays']}. "
+update = f"New Senate vote {most_recent['date']}: {most_recent['question']} for {most_recent['issue']}. The yeas were {most_recent['yeas']} and the nays were {most_recent['nays']}. "
 
 print(update)
