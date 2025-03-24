@@ -15,13 +15,18 @@ else:
 soup = BeautifulSoup(xml_content, features = 'xml')
 votes = soup.find_all('vote')
 
+most_recent = []
+
 for vote in votes:
     date = vote.find('vote_date').text
     question = vote.find('question').text
     issue = vote.find('issue').text
     yeas = vote.find('yeas').text
     nays = vote.find('nays').text
+    number = vote.find('vote_number').text
 
-update = f"New Senate vote {date}: {question} for [issue]. The yeas were [yeas] and the nays were [nays]. "
+    if number > '00134': most_recent
+
+update = f"New Senate vote {most_recent.append['date']}: {most_recent.append['question']} for {most_recent.append['issue']}. The yeas were {most_recent.append['yeas']} and the nays were {most_recent.append['nays']}. "
 
 print(update)
