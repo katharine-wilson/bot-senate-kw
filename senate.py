@@ -6,7 +6,7 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-slack_token = os.environ.get('e7d57ee09ecc46b98b25a46d47b7bb23')
+slack_token = os.environ.get('SLACK_API_KEY')
 client = WebClient(token=slack_token)
 
 def fetch_votes():
