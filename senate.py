@@ -6,7 +6,7 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
-slack_token = os.environ.get('SLACK_API_TOKEN')
+slack_token = os.environ.get('e7d57ee09ecc46b98b25a46d47b7bb23')
 client = WebClient(token=slack_token)
 
 def fetch_votes():
@@ -21,7 +21,7 @@ def fetch_votes():
         return None
 
 def parse_votes(xml_content):
-    soup = BeautifulSoup(xml_content, features='xml')
+    soup = BeautifulSoup(xml_content, 'lxml-xml')
     votes = soup.find_all('vote')
 
     most_recent_vote = None  # Variable to store the most recent vote
