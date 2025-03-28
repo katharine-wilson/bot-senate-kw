@@ -1,6 +1,6 @@
 import os
-from slack import WebClient
-from slack.errors import SlackApiError
+from slack_sdk import WebClient
+from slack_sdk.errors import SlackApiError
 import json
 import requests
 import time
@@ -76,7 +76,7 @@ def main():
                 try:
                     response = client.chat_postMessage(
                         channel="slack-bots",
-                        text=msg,
+                        text=update,
                         unfurl_links=True, 
                         unfurl_media=True
                     )
