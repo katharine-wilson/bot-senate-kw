@@ -3,7 +3,6 @@ from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 import json
 import requests
-import time
 from bs4 import BeautifulSoup
 
 slack_token = os.environ.get('SLACK_API_KEY')
@@ -57,42 +56,35 @@ def save_latest_vote_number(latest_vote_number):
         json.dump({'latest_vote_number': latest_vote_number}, file)
 
 def main():
-    while True:
-        xml_content = fetch_votes()
-        if xml_content:
-            most_recent_vote, latest_vote_number = parse_votes(xml_content)
-            previous_vote_number = load_previous_vote_number()
+    xml_content = fetch_votes()
+    if xml_content:
+        most_recent_vote, latest_vote_number = parse_votes(xml_content)
+        previous_vote_number = load_previous_vote_number()
 
-            # Compare the latest vote number with the previous vote number
-            if latest_vote_number > previous_vote_number:
-                update = "Found a new Senate vote."
-                
-                # Prepare detailed update message for the most recent vote
-                if most_recent_vote:
+        # Compare the latest vote number with the previous vote number
+        if latest_vote_number > previous_vote_number:
+            update = "Found a new Senate vote."
+            # Prepare detailed update message for the most recent vote
+            if most_recent_vote:
                     update += f"\nNew Senate vote {most_recent_vote[1]}: {most_recent_vote[2]} for {most_recent_vote[3]}. The yeas were {most_recent_vote[4]} and the nays were {most_recent_vote[5]}. Description: {most_recent_vote[6]}"
                 
-                print(update)
+            print(update)
 
-                try:
-                    response = client.chat_postMessage(
-                        channel="slack-bots",
-                        text=update,
-                        unfurl_links=True, 
-                        unfurl_media=True
-                    )
-                    print("success!")
-                except SlackApiError as e:
-                    assert e.response["ok"] is False
-                    assert e.response["error"]
-                    print(f"Got an error: {e.response['error']}")
+            try:
+                response = client.chat_postMessage(
+                    channel="slack-bots",
+                    text=update,
+                    unfurl_links=True, 
+                    unfurl_media=True
+                )
+                print("success!")
+            except SlackApiError as e:
+                print(f"Got an error: {e.response['error']}")
               
-                save_latest_vote_number(latest_vote_number)  # Save the latest vote number
+            save_latest_vote_number(latest_vote_number)  # Save the latest vote number
 
-            else:
-                print("No new votes found.")
-
-        # Wait for a specified time before checking again (e.g., 60 seconds)
-        time.sleep(60)
+        else:
+            print("No new votes found.")
 
 if __name__ == "__main__":
     main()
