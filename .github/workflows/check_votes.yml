@@ -2,7 +2,7 @@ name: Check Senate Votes
 
 on:
   schedule:
-    - cron: '0 * * * *'  # This will run the action every hour
+    - cron: '*/5 * * * *'
   workflow_dispatch:  # Allows manual triggering of the workflow
 
 jobs:
