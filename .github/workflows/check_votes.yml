@@ -1,4 +1,4 @@
-Name: Check Senate Votes
+name: Check Senate Votes
 
 on:
   schedule:
