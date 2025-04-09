@@ -71,8 +71,7 @@ def main():
             update = "Found a new Senate vote."
             # Prepare detailed update message for the most recent vote
             if most_recent_vote:
-                    update += f"\nOn {most_recent_vote[1]} the Senate voted on {most_recent_vote[3]}. The yeas were {most_recent_vote[4]} and the nays were {most_recent_vote[5]}. {most_recent_vote[6]}
-                    Vote: {most_recent_vote[2]}"
+                    update += f"\nOn {most_recent_vote[1]} the Senate voted on {most_recent_vote[3]}. The yeas were {most_recent_vote[4]} and the nays were {most_recent_vote[5]}. {most_recent_vote[6]}, Vote: {most_recent_vote[2]}"
                 
             print(update)
 
